@@ -1,6 +1,5 @@
 const path = require('path')
 const fs = require('fs')
-const dotenv = require('dotenv')
 const Webpack = require('webpack')
 const { VueLoaderPlugin } = require('vue-loader')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
