@@ -1,3 +1,8 @@
+/*
+ * @Author: xianing
+ * @LastEditors: xianing
+ * @Date: 2022/2/12
+ */
 const path = require('path')
 const fs = require('fs')
 const Webpack = require('webpack')
@@ -14,7 +19,6 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 // 复用loader
 let isDevelopment = process.env.NODE_ENV === 'development'
 let target = isDevelopment ? 'web' : 'browserslist'
-console.log(isDevelopment);
 const commonCssLoader = [
     isDevelopment? 'style-loader' : miniCssExtractPlugin.loader,
     'css-loader',
@@ -129,6 +133,7 @@ module.exports = {
         hot: true,
         port: '7070',
         compress:true,
+        clientLogLevel: 'error'
         // client:{
         //     logging:'error'
         // }

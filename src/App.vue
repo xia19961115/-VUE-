@@ -1,5 +1,5 @@
 <template>
-    <div>hello APP 2022/2/12en dsds89713
+    <div>hello APP 2022/2/12en dsds8971321
         <div>
             <img src="@/assets/1.png" alt="">
         </div>

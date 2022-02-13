@@ -1,7 +1,7 @@
 <template>
-    <div>Home页面12212323121111
+    <div>Home页面1221232312111111
         <div>32222hello</div>
-        <div>真的好了</div>
+        <div>真的好了12</div>
     </div>
 </template>
 <script>
@@ -12,7 +12,7 @@ export default {
 <style lang="scss" scoped>
 div{
     font-size: 40px;
-    color: pink;
+    color: yellow;
     background-color: rebeccapurple;
     backface-visibility: hidden;
 }
