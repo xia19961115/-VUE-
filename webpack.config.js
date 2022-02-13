@@ -8,9 +8,13 @@ const TerserPlugin = require('terser-webpack-plugin')
 const miniCssExtractPlugin = require('mini-css-extract-plugin')
 // 压缩CSS
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
+// 进度条插件
+const ProgressBarWebpackPlugin = require('progress-bar-webpack-plugin')
 // 复用loader
+let isDevelopment = process.env.NODE_ENV === 'development'
+console.log(isDevelopment);
 const commonCssLoader = [
-    miniCssExtractPlugin.loader,
+    isDevelopment? 'style-loader' : miniCssExtractPlugin.loader,
     'css-loader',
     {
       // 还需要在package.json中定义browserslist
@@ -77,11 +81,12 @@ module.exports = {
     },
     // 插件
     plugins: [
+        new OptimizeCssAssetsWebpackPlugin(),
+        new VueLoaderPlugin(),
+        new ProgressBarWebpackPlugin(),
         new miniCssExtractPlugin({
             filename: 'css/[name].[contenthash:6].css'
         }),
-        new OptimizeCssAssetsWebpackPlugin(),
-        new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
             template:'./public/index.html',
             title:'自定义安装vue',
@@ -100,12 +105,14 @@ module.exports = {
                     ...obj
                 }
             }
-        })
+        }),
     ],
     // devtool: 'hidden-source-map',
     // 热更新
     devServer:{
+        // contentBase: path.resolve(__dirname, 'dist'),
         static: path.resolve(__dirname,'dist'),
+        // quiet: true,
         open:true,
         // host:'local-ip',
         hot: true,

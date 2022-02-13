@@ -1,5 +1,5 @@
 <template>
-    <div>hello APP 2022/2/12 test
+    <div>hello APP 2022/2/12en dsds89713
         <div>
             <img src="@/assets/1.png" alt="">
         </div>
@@ -21,7 +21,7 @@ export default {
      color: red;
      font-size: 27px;
      background: #f6f6f6;
-     transform: translate(100px);
+     font-size: 30px;
      backface-visibility: hidden;
  }
 </style>
