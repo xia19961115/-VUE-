@@ -10,8 +10,10 @@ const miniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 // 进度条插件
 const ProgressBarWebpackPlugin = require('progress-bar-webpack-plugin')
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 // 复用loader
 let isDevelopment = process.env.NODE_ENV === 'development'
+let target = isDevelopment ? 'web' : 'browserslist'
 console.log(isDevelopment);
 const commonCssLoader = [
     isDevelopment? 'style-loader' : miniCssExtractPlugin.loader,
@@ -81,6 +83,14 @@ module.exports = {
     },
     // 插件
     plugins: [
+        new FriendlyErrorsWebpackPlugin({
+            compilationSuccessInfo: {
+                messages: [`Your application is running here: http://localhost:7070`]
+              },
+              // 是否每次都清空控制台
+              clearConsole: true,
+        }),
+        new Webpack.HotModuleReplacementPlugin(),
         new OptimizeCssAssetsWebpackPlugin(),
         new VueLoaderPlugin(),
         new ProgressBarWebpackPlugin(),
@@ -109,17 +119,18 @@ module.exports = {
     ],
     // devtool: 'hidden-source-map',
     // 热更新
+    target,
     devServer:{
-        // contentBase: path.resolve(__dirname, 'dist'),
-        static: path.resolve(__dirname,'dist'),
-        // quiet: true,
+        contentBase: path.resolve(__dirname, 'dist'),
+        // static: path.resolve(__dirname,'dist'),
+        quiet: true,
         open:true,
         // host:'local-ip',
         hot: true,
-        port: 'auto',
+        port: '7070',
         compress:true,
-        client:{
-            logging:'error'
-        }
+        // client:{
+        //     logging:'error'
+        // }
     }
 }
